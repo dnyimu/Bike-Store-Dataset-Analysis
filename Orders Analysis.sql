@@ -156,7 +156,33 @@ GROUP BY
 	SUM(oi.quantity * oi.list_price);
     
     
-    
+-- Total Store sales
+
+SELECT 
+	st.store_name,
+    cus.state,
+    ROUND(SUM(oi.quantity * oi.list_price),2) as TotalSales
+FROM
+	stores as st
+INNER JOIN
+	orders as ord
+ON
+	st.store_id = ord.store_id
+INNER JOIN
+	 order_items as oi
+ON
+	ord.order_id = oi.order_id
+INNER JOIN
+	customers as cus
+ON
+	ord.customer_id = cus.customer_id
+WHERE
+	ord.order_status ='4'
+GROUP BY
+	st.store_name,
+    cus.state
+ ORDER BY
+	SUM(oi.quantity * oi.list_price) desc;    
     
 
 
@@ -176,10 +202,6 @@ GROUP BY
 
 
 
-Error Code: 1064. You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'INNER JOIN  orders as ord, ON  st.store_id = ord.store_ID, INNER JOIN   order_it' at line 7
-
-	Error Code: 1064. You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'INNER JOIN  orders as ord, ON  st.store_id = ord.store_id, INNER JOIN   order_it' at line 7
-Error Code: 1064. You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'INNER JOIN  orders as ord, ON  st.store_id = ord.store_id, INNER JOIN   order_it' at line 7
 
  
  
