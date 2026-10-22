@@ -25,4 +25,96 @@ GROUP BY
     cus.state
  ORDER BY
 	SUM(oi.quantity * oi.list_price) desc;    
+
+
+--  TOP 10 PRODUCT SALES 
+
+-- STORE 1 SANTA CRUZ BIKES
+
+SELECT 
+	st.store_name,
+	p.product_name,
+	ROUND(SUM(oi.quantity * oi.list_price),2) as TotalSales
+FROM 
+	stores as st
+INNER JOIN
+	orders as o
+ON
+	st.store_id = o.store_id
+INNER JOIN
+	order_items as oi
+ON
+	o.order_id = oi.order_id
+INNER JOIN
+	products as p
+ON
+	oi.product_id = p.product_id
+WHERE
+	o.order_status='4' and st.store_id ='1'
+GROUP BY
+	st.store_name,
+	p.product_name
+ORDER BY
+	SUM(oi.quantity * oi.list_price) desc
+LIMIT 
+	10;
+
+-- Store 2 BALDWIN BIKES
+SELECT 
+	st.store_name,
+	p.product_name,
+	ROUND(SUM(oi.quantity * oi.list_price),2) as TotalSales
+FROM 
+	stores as st
+INNER JOIN
+	orders as o
+ON
+	st.store_id = o.store_id
+INNER JOIN
+	order_items as oi
+ON
+	o.order_id = oi.order_id
+INNER JOIN
+	products as p
+ON
+	oi.product_id = p.product_id
+WHERE
+	o.order_status='4' and st.store_id ='2'
+GROUP BY
+	st.store_name,
+	p.product_name
+ORDER BY
+	SUM(oi.quantity * oi.list_price) desc
+LIMIT 
+10;
+
+-- Store 3 ROWLETT BIKES
+SELECT 
+	st.store_name,
+	p.product_name,
+	ROUND(SUM(oi.quantity * oi.list_price),2) as TotalSales
+FROM 
+	stores as st
+INNER JOIN
+	orders as o
+ON
+	st.store_id = o.store_id
+INNER JOIN
+	order_items as oi
+ON
+	o.order_id = oi.order_id
+INNER JOIN
+	products as p
+ON
+	oi.product_id = p.product_id
+WHERE
+	o.order_status='4' and st.store_id ='3'
+GROUP BY
+	st.store_name,
+	p.product_name
+ORDER BY
+	SUM(oi.quantity * oi.list_price) desc
+LIMIT 
+10
+	
     
