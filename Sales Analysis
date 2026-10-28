@@ -1,4 +1,4 @@
--- Total Store per store
+-- Total Sales per store
 
 SELECT 
 	st.store_name,
