@@ -27,7 +27,7 @@ GROUP BY
 	SUM(oi.quantity * oi.list_price) desc;    
 
 
---  TOP 10 PRODUCT SALES 
+--  TOP 10 PRODUCT SALES IN EACH STORE
 
 -- STORE 1 SANTA CRUZ BIKES
 
