@@ -1,4 +1,4 @@
--- Total Sales per store
+-- Total Sales Revenue per store
 
 SELECT 
 	st.store_name,
@@ -27,7 +27,7 @@ GROUP BY
 	SUM(oi.quantity * oi.list_price) desc;    
 
 
---  TOP 10 PRODUCT SALES IN EACH STORE
+--  TOP 10 PRODUCT SALES(REVENUE) IN EACH STORE
 
 -- STORE 1 SANTA CRUZ BIKES
 
@@ -116,5 +116,38 @@ ORDER BY
 	SUM(oi.quantity * oi.list_price) desc
 LIMIT 
 10
+
+-----------------------------------------------------------------------
+
+-- TOP 3 Category in Each Store(Sales Revenue)
+
+-- Store 1 SANTAZ CRUZ BIKES
+SELECT
+	cat.category_name,
+   ROUND( SUM(oi.quantity * oi.list_price),2)
+FROM
+	stores as st
+INNER JOIN
+	orders  as o
+ON
+	st.store_id= o.store_id
+INNER JOIN
+	order_items as oi
+ON
+	oi.order_id = o.order_id
+INNER JOIN
+	products as p
+ON 
+	p.product_id = oi.product_id
+INNER JOIN
+	categories  as cat
+ON 
+ p.category_id  = cat. category_id
+ GROUP BY
+	cat.category_name
+ ORDER BY
+	SUM(oi.quantity * oi.list_price) desc
+LIMIT
+3
 	
     
