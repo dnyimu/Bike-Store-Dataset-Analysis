@@ -124,7 +124,7 @@ LIMIT
 -- Store 1 SANTAZ CRUZ BIKES
 SELECT
 	cat.category_name,
-   ROUND( SUM(oi.quantity * oi.list_price),2)
+   ROUND( SUM(oi.quantity * oi.list_price),2)  AS SalesRevenue
 FROM
 	stores as st
 INNER JOIN
