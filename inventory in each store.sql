@@ -1,4 +1,5 @@
---  All Inventory from store 1
+--  All Inventory from store 1( SANTA CRUZ BIKES)
+
 
 SELECT 
 	st.store_name,
@@ -25,7 +26,7 @@ ORDER BY
     
     
     
-    -- All Inventory from store 2
+    -- All Inventory from store 2(BALDWIN BIKES)
     
     SELECT 
 	st.store_name,
@@ -50,7 +51,7 @@ ORDER BY
 	sk.quantity asc;
 
 
--- All inventory from store 3
+-- All inventory from store 3( ROWLETT BIKES)
 
    SELECT 
 	st.store_name,
