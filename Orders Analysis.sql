@@ -3,6 +3,12 @@
 2:PROCESSING
 3:REJECTED
 4:COMPLETED
+
+STORE ID:
+	SANTA CRUZ =1
+	BALWIND = 2
+	ROWLETT = 3
+	
 ------------------------------------------------------------------
 -- Amount of orders in Pending in each store
 SELECT
@@ -154,7 +160,114 @@ GROUP BY
     cus.state
  ORDER BY
 	SUM(oi.quantity * oi.list_price);
+--------------------------------------------------------------------
+-- TOP 5 ordered bikes in each store( number of times ordered) 
+SANTA CRUZ STORE
+	
+SELECT 
+	st.store_name,
+    p.product_name,
+    COUNT(p.product_name) as AmountTimesOrdered
+FROM
+	stores as st
+INNER JOIN
+	orders as ord
+ON
+	st.store_id = ord.store_id
+INNER JOIN
+	 order_items as oi
+ON
+	ord.order_id = oi.order_id
+INNER JOIN
+	products as p
+ON
+	p.product_id = oi.product_id
+INNER JOIN
+	customers as cus
+ON
+	ord.customer_id = cus.customer_id
+WHERE
+	ord.order_status ='4' 
+    AND
+    st.store_id = '1'
+GROUP BY
+	 st.store_name,
+     P.product_name
+ORDER BY
+	    COUNT(p.product_name) desc
+	limit 5
+
+   BALDWIN BIKE STORE
+	
+    SELECT 
+	st.store_name,
+    p.product_name,
+    COUNT(p.product_name) as AmountTimesOrdered
+FROM
+	stores as st
+INNER JOIN
+	orders as ord
+ON
+	st.store_id = ord.store_id
+INNER JOIN
+	 order_items as oi
+ON
+	ord.order_id = oi.order_id
+INNER JOIN
+	products as p
+ON
+	p.product_id = oi.product_id
+INNER JOIN
+	customers as cus
+ON
+	ord.customer_id = cus.customer_id
+WHERE
+	ord.order_status ='4' 
+    AND
+    st.store_id = '2'
+GROUP BY
+	 st.store_name,
+     P.product_name
+ORDER BY
+	    COUNT(p.product_name) desc
+	limit 5
+	
+ ROWLETT BIKES STORE
+ 
+ SELECT 
+	st.store_name,
+    p.product_name,
+    COUNT(p.product_name) as AmountTimesOrdered
+FROM
+	stores as st
+INNER JOIN
+	orders as ord
+ON
+	st.store_id = ord.store_id
+INNER JOIN
+	 order_items as oi
+ON
+	ord.order_id = oi.order_id
+INNER JOIN
+	products as p
+ON
+	p.product_id = oi.product_id
+INNER JOIN
+	customers as cus
+ON
+	ord.customer_id = cus.customer_id
+WHERE
+	ord.order_status ='4' 
+    AND
+    st.store_id = '3'
+GROUP BY
+	 st.store_name,
+     P.product_name
+ORDER BY
+	    COUNT(p.product_name) desc
+	limit 5
     
+
     
     
     
