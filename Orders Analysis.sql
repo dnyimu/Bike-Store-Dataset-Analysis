@@ -161,7 +161,7 @@ GROUP BY
  ORDER BY
 	SUM(oi.quantity * oi.list_price);
 --------------------------------------------------------------------
--- TOP 5 ordered bikes in each store( number of times ordered) 
+-- TOP 5 ordered bikes in each store  (number of completed orders) 
 SANTA CRUZ STORE
 	
 SELECT 
