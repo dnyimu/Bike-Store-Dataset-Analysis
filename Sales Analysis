@@ -149,5 +149,56 @@ ON
 	SUM(oi.quantity * oi.list_price) desc
 LIMIT
 3;
+-------------------------------------------------------------------
+
+CTE WAS USED:
+
+Top 5 Bikes Sold accross all stores combined  in Summer 2017(june 21- sep 22) 
+    
+    WITH SummerSales AS
+( 
+SELECT 
+		o.order_date,
+		o.customer_id,
+		o.order_id,
+		s.store_name,
+		cat.category_name,
+		p.product_name,
+		oi.list_price
+	FROM
+		orders AS o
+	INNER JOIN
+		stores as s
+	ON
+		o.store_id = s.store_id
+	INNER JOIN
+		order_items AS oi
+	ON
+		o.order_id = oi.order_id
+	INNER JOIN
+		products as p
+	ON
+		oi.product_id = p.product_id
+	INNER JOIN
+		categories  as cat
+	ON
+		p.category_id = cat.category_id
+	WHERE
+  order_date BETWEEN '2017-06-21' AND '2017-09-22'
+    AND
+    o.order_status =4
+	)
+SELECT
+    product_name,
+	COUNT(product_name) as BikesSoldInSummer
+FROM
+	SummerSales
+GROUP BY
+	product_name
+ORDER BY
+	COUNT(product_name) desc
+    LIMIT 5   
+		
+
 	
     
