@@ -119,12 +119,10 @@ LIMIT
 
 -----------------------------------------------------------------------
 
--- TOP 3 Category in Each Store(Sales Revenue)
-
--- Store 1 SANTAZ CRUZ BIKES
+-- TOP 3 Category Sales(Sales Revenue) in across all stores combined
 SELECT
 	cat.category_name,
-   ROUND( SUM(oi.quantity * oi.list_price),2)  AS SalesRevenue
+   ROUND( SUM(oi.quantity * oi.list_price),2) AS SalesRevenue
 FROM
 	stores as st
 INNER JOIN
@@ -143,11 +141,13 @@ INNER JOIN
 	categories  as cat
 ON 
  p.category_id  = cat. category_id
+ WHERE
+	o.order_status ='4'
  GROUP BY
 	cat.category_name
  ORDER BY
 	SUM(oi.quantity * oi.list_price) desc
 LIMIT
-3
+3;
 	
     
